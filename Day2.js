@@ -25,9 +25,12 @@ function decryptInput(input) {
 }
 
 function winner(opponentScore, playerScore) {
-    if (opponentScore === playerScore) {
+    //initially I had (opponentScore === playerScore) but that was not working
+    //realised it was not comparing the values but the arrays themselves, which are not the same
+    if (opponentScore[0] === playerScore[0]) {
         opponentPoints += 3 // 3 points for every draw
         playerPoints += 3 // 3 points for every draw
+        // both opponentScpre[0] and playerScore[0] are the same, both get points
         if (opponentScore[0] === "rock") {
             opponentPoints += 1
             playerPoints += 1
@@ -70,6 +73,7 @@ function winner(opponentScore, playerScore) {
 function game() {
     for (let i = 0; i < opponent.length; i++) {
         winner(opponent[i], player[i])
+        console.log(opponentPoints, playerPoints)
     }
     console.log("opponent points: " + opponentPoints)
     console.log("player points: " + playerPoints)
